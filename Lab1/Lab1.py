@@ -1,9 +1,9 @@
 from random import randrange
 from prettytable import PrettyTable
-a0 = 1
-a1 = 1
-a2 = 3
-a3 = 2
+a0 = int(input("Введіть а0: "))
+a1 = int(input("Введіть а1: "))
+a2 = int(input("Введіть а2: "))
+a3 = int(input("Введіть а3: "))
 x1 = [randrange(1,21,1) for _ in range(8)]
 x2 = [randrange(1,21,1) for _ in range(8)]
 x3 = [randrange(1,21,1) for _ in range(8)]
