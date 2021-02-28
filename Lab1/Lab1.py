@@ -1,9 +1,14 @@
+from time import time
 from random import randrange
 from prettytable import PrettyTable
-a0 = int(input("Введіть а0: "))
-a1 = int(input("Введіть а1: "))
-a2 = int(input("Введіть а2: "))
-a3 = int(input("Введіть а3: "))
+
+start_time = time()
+
+a0 = randrange(1, 21)
+a1 = randrange(1, 21)
+a2 = randrange(1, 21)
+a3 = randrange(1, 21)
+
 x1 = [randrange(1,21,1) for _ in range(8)]
 x2 = [randrange(1,21,1) for _ in range(8)]
 x3 = [randrange(1,21,1) for _ in range(8)]
@@ -31,3 +36,4 @@ table.add_row(["dx", dx1, dx2, dx3, "", "", "", ""])
 print(table)
 print("Yэт: {}".format(Y_et))
 print("Yэт←: {1}(№{0})".format(list_Y.index(result)+1, result))
+print("\nЧас виконання програми: {} секунд ".format(time() - start_time))
