@@ -51,7 +51,7 @@ class Exp:
         ]
         return np.array(X_norm)
 
-    def check_r(self) -> bool:
+    def check_r(self) -> bool:  # Перевірка однорідності дисперсії за критерієм Романовського
         for i in range(len(self.y_var)):
             for j in range(len(self.y_var)):
                 if i > j:
