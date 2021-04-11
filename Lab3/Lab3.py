@@ -137,6 +137,7 @@ class FractionalExperiment:
         res = [t for t in ts if t > t_student]
         B = self.count_koefs()
         final_k = [B[ts.index(i)] for i in ts if i in res]
+        self.sig_coefs_n = len(final_k[1:])
         print('Коефіцієнти {} статистично незначущі, тому ми виключаємо їх з рівняння.'.format(
             [i for i in B if i not in final_k]))
 
@@ -160,6 +161,10 @@ class FractionalExperiment:
         else:
             print('Математична модель не адекватна експериментальним даним')
 
-
-experiment = FractionalExperiment(7, 8)
-experiment.check()
+total_sig_coefs_q = 0
+n = 100
+for _ in range(n):
+    experiment = FractionalExperiment(7, 8)
+    experiment.check()
+    total_sig_coefs_q += experiment.sig_coefs_n
+print("\nКількість значущих коефіцієнтів за {} виконань програми: {}".format(n, total_sig_coefs_q))
