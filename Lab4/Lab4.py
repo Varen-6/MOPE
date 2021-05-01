@@ -291,10 +291,13 @@ while not flag:
                                                                                      Y_average[2],
                                                                                      Y_average[3]))
 
-    if Fp > Ft:
+    if len([_ for _ in ts if _ not in znach_koef]) > len(znach_koef):
+        print('Рівняння регресії неадекватно оригіналу, бо значимих коефіцієнтів менше за не значимих')
+    elif Fp > Ft:
         print('Fp = {} > Ft = {}'.format(round(Fp, 3), Ft))
         print('Рівняння регресії неадекватно оригіналу при рівні значимості {}'.format(round(q, 2)))
     else:
         print('Fp = {} < Ft = {}'.format(round(Fp, 3), Ft))
         print('Рівняння регресії адекватно оригіналу при рівні значимості {}'.format(round(q, 2)))
         flag = True
+
