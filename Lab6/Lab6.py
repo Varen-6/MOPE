@@ -5,6 +5,7 @@ from itertools import compress
 from scipy.stats import f, t
 import numpy
 from functools import reduce
+from time import time
 import matplotlib.pyplot as plot
 
 
@@ -131,6 +132,7 @@ def cochran_criteria(m, N, y_table):
 
 
 def student_criteria(m, N, y_table, beta_coefficients):
+    ctime = time()
     def get_student_value(f3, q):
         return Decimal(abs(t.ppf(q / 2, f3))).quantize(Decimal('.0001')).__float__()
 
@@ -143,6 +145,7 @@ def student_criteria(m, N, y_table, beta_coefficients):
     q = 0.05
     t_our = get_student_value(f3, q)
     importance = [True if el > t_our else False for el in list(t_i)]
+    ctime = time() - ctime
     # print result data
     print("Оцінки коефіцієнтів βs: " + ", ".join(list(map(lambda x: str(round(float(x), 3)), beta_coefficients))))
     print("Коефіцієнти ts: " + ", ".join(list(map(lambda i: "{:.2f}".format(i), t_i))))
@@ -152,6 +155,7 @@ def student_criteria(m, N, y_table, beta_coefficients):
     to_print = map(lambda x: x[0] + " " + x[1], zip(beta_i, importance_to_print))
     print(*to_print, sep="; ")
     print_equation(beta_coefficients, importance)
+    print("Час пошуку значимих коефіцієнтів: {:.15f}".format(ctime))
     # y = []
     # x = []
     # for i in range(len(list(t_i))):
